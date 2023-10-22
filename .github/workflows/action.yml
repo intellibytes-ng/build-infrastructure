@@ -22,9 +22,11 @@ jobs:
             role-to-assume: arn:aws:iam::128832418121:role/github_role
             role-duration-seconds: 900 # the ttl of the session, in seconds.
             aws-region: eu-west-1 # use your region here.
-        # You can now execute commands that use the credentials👇
-
+        # You can now execute commands that use the credentials👇 
+        
+        # terraform apply --auto-approve # switch to this when ready
         - name: Initialize terraform and build infrastructure
           run: |
             terraform init
-            terraform apply --auto-approve
+            terraform destroy --auto-approve
+            
