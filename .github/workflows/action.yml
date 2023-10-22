@@ -1,0 +1,30 @@
+name: DEPLOY INFRASTRUCTURE ON AWS
+
+permissions:
+  id-token: write # required to use OIDC authentication
+  contents: read # required to checkout the code from the repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuuntu-latest
+    steps:
+        - name: Check out code
+          uses: actions/checkout@v3
+        
+        - name: configure aws credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            role-to-assume: arn:aws:iam::128832418121:role/github_role
+            role-duration-seconds: 900 # the ttl of the session, in seconds.
+            aws-region: eu-west-1 # use your region here.
+        # You can now execute commands that use the credentials👇
+
+        - name: Initialize terraform and build infrastructure
+          run: |
+            terraform init
+            terraform plan
