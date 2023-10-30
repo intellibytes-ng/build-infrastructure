@@ -28,5 +28,5 @@ jobs:
         - name: Initialize terraform and build infrastructure
           run: |
             terraform init
-            terraform destory --auto-approve
+            terraform destroy --auto-approve
             
