@@ -28,5 +28,5 @@ jobs:
         - name: Initialize terraform and build infrastructure
           run: |
             terraform init
-            terraform plan --auto-approve
+            terraform apply --auto-approve
             
